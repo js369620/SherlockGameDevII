@@ -437,6 +437,7 @@ GameObject:
   - component: {fileID: 552730859}
   - component: {fileID: 552730858}
   - component: {fileID: 552730857}
+  - component: {fileID: 552730861}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -487,8 +488,8 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 552730858}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 552730861}
+        m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
         m_MethodName: GetMoveInput
         m_Mode: 0
         m_Arguments:
@@ -503,8 +504,8 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 552730858}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 552730861}
+        m_TargetAssemblyTypeName: PlayerStateMachine, Assembly-CSharp
         m_MethodName: GetJumpInput
         m_Mode: 0
         m_Arguments:
@@ -538,7 +539,6 @@ MonoBehaviour:
   invertX: 0
   invertY: 0
   sensitivity: 0.442
-  debugText: {fileID: 1129369363}
 --- !u!143 &552730859
 CharacterController:
   m_ObjectHideFlags: 0
@@ -574,13 +574,32 @@ Transform:
   m_GameObject: {fileID: 552730856}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.041, z: 0}
+  m_LocalPosition: {x: 0, y: 2.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 689591908}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &552730861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552730856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1033da35c92583543ae1c91fe659f20f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugText: {fileID: 1129369363}
+  moveInput: {x: 0, y: 0}
+  grounded: 0
+  charController: {fileID: 0}
+  playerVelocity: {x: 0, y: 0, z: 0}
+  wishDir: {x: 0, y: 0, z: 0}
+  jumpButtonPressed: 0
 --- !u!1 &689591907
 GameObject:
   m_ObjectHideFlags: 0
