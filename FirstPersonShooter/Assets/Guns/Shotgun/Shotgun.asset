@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b5d26b81777e98458fe0470b61e8aa6, type: 3}
-  m_Name: Pistol
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
   range: 1000
-  ammoPerClip: 12
-  automatic: 1
-  primaryFireDelay: 0.5
-  spread: 2.3
+  ammoPerClip: 8
+  automatic: 0
+  primaryFireDelay: 0.7
+  spread: 6.4
