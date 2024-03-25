@@ -28,10 +28,15 @@ public class Pistol : Gun
                 if (Physics.Raycast(ray, out hit, gunData.range))
                 {
                     Debug.DrawLine(transform.position, hit.point, Color.green, 0.05f);
-                    print(ammoInClip);
+                    //print(ammoInClip);
                 }
                 ammoInClip--;
                 if (ammoInClip <= 0) ammoInClip = gunData.ammoPerClip;
+
+                //particles
+                muzzleFlash.Play();
+                TrailRenderer trail = Instantiate(bulletTrail, shootPoint.position, Quaternion.identity);
+                StartCoroutine(SpawnTrail(trail, dir, hit));
             }
         }
         

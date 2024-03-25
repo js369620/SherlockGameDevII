@@ -22,6 +22,19 @@ public class Gun : MonoBehaviour
     protected bool primaryFireHold = false;
     protected float shootDelayTimer = 0.0f;
 
+    //Trail/particle vars
+    [SerializeField]
+    protected Transform shootPoint;
+    [SerializeField]
+    protected TrailRenderer bulletTrail;
+    [SerializeField]
+    protected ParticleSystem muzzleFlash;
+    [SerializeField]
+    protected ParticleSystem impactParticles;
+
+    //"everyone got this down okay?"
+    //"eh" - Rowan, 2024
+
     //Debug
     public TMP_Text debugText;
 
@@ -79,5 +92,32 @@ public class Gun : MonoBehaviour
     protected virtual void SecondaryFire()
     {
 
+    }
+
+    protected IEnumerator SpawnTrail(TrailRenderer trail, Vector3 direction, RaycastHit hit)
+    {
+        float time = 0;
+        Vector3 startPosition = trail.transform.position;
+        Vector3 endPosition = Vector3.zero;
+
+        if (hit.point == Vector3.zero)
+        {
+            endPosition = startPosition + direction * 100;
+        }
+        else endPosition = hit.point;
+
+        while(time < 1)
+        {
+            trail.transform.position = Vector3.Lerp(startPosition, endPosition, time);
+             //lerp is starting at one value, ending at another value, and increment by certain third value (i think, he said it too fast for me to type)
+            time += Time.deltaTime / trail.time;
+            yield return null;
+        }
+
+        if(hit.point != Vector3.zero)
+        {
+            Instantiate(impactParticles, hit.point, Quaternion.LookRotation(hit.normal));
+        }
+        Destroy(trail.gameObject, trail.time);
     }
 }
